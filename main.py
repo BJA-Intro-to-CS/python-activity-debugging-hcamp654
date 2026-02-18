@@ -18,10 +18,17 @@ def apply_discount(price, discount):
 
 
 def update_stock(products, product_name, amount):
+    ammount = int(ammount)
+    updated_product = None
     for product in products:
         if product["name"] == product_name:
-            product["stock"] = product["stock"] - int(amount)
-    return product
+            new_stock = int(product["stock"]) - ammount
+            if new_stock < 0:
+                new_stock = 0
+            product["stock"] = new_stock
+            updated_product = product
+        break
+    return updated_product
 
 
 def get_average_price(products):
